@@ -40,17 +40,17 @@ class DopplerShift {
 	radius_sat = Math.cbrt(const_G*m_earth*Math.pow(period_T,2)/(Math.pow(2*Math.PI,2)));//calc radius_sat
 	double sat_altitude = radius_sat-radius_earth;
 
-	System.out.print("\nSatellite avg. altitude: " + Math.round(sat_altitude)/1e3 + "km (" + Math.round(0.621371192*sat_altitude)/1e3 + " miles)");
+	System.out.print("\nSatellite avg. altitude: " + Math.round(sat_altitude)/1e3 + " km (" + Math.round(0.621371192*sat_altitude)/1e3 + " miles)");
 
 
 	velocity_sat = 2*Math.PI*radius_sat/period_T; //calc velocity
 
-	System.out.print("\nSatellite velocity: " + Math.round(velocity_sat)/1e3 + "km/s (" + Math.round(3600*0.621371192*velocity_sat)/1e3 + " mph)");
+	System.out.print("\nSatellite velocity: " + Math.round(velocity_sat)/1e3 + " km/s (" + Math.round(3600*0.621371192*velocity_sat)/1e3 + " mph)");
 
 
 	velocity_receiver = 2*Math.PI*radius_earth/86400.0;//calc velocity
 
-	System.out.print("\nReceiver station velocity: " + Math.round(velocity_receiver)/1e3 + "km/s (" + Math.round(3600*0.621371192*velocity_receiver)/1e3 + " mph)");
+	System.out.print("\nReceiver station velocity: " + Math.round(velocity_receiver)/1e3 + " km/s (" + Math.round(3600*0.621371192*velocity_receiver)/1e3 + " mph)");
 
 
 	d_velocity = 2*Math.PI*(radius_sat/period_T + radius_earth/86400.0); //calc delta_velocity
@@ -60,13 +60,18 @@ class DopplerShift {
 	BigDecimal bd = new BigDecimal(d_freq);
 	bd = bd.round(new MathContext(3));
 
-	System.out.print("\nCarrier frequency variance: (+/-)" + bd + "kHz");
-	
-	//TODO
+	System.out.print("\nCarrier frequency variance: (+/-)" + bd + " kHz");
 
+
+	//pythagorian//debug
 	double thi = 2*Math.PI/period_T;//angle in radians
+	double y =  radius_sat*thi;
+	double x = Math.sqrt(Math.pow(sat_altitude,2) + Math.pow(y,2));
+	double dx = x-sat_altitude;
 
-	System.out.print("\n\nangle: " + thi + " rad/s");
+	System.out.print("\n\ndx: " + dx + " metres");
+	System.out.print("\ny: " + y/1e3 + " km");
+	System.out.print("\nangle: " + thi + " radians/s");
 
 	//relativity bit //TODO
 	double  gamma = 1.0/Math.sqrt(1.0-(Math.pow(d_velocity/const_c,2)));
