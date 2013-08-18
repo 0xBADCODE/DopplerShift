@@ -64,7 +64,7 @@ class DopplerShift {
 	
 	//TODO
 
-	double thi = Math.tan(velocity_sat/sat_altitude);//angle in radians
+	double thi = 2*Math.PI/period_T;//angle in radians
 
 	System.out.print("\n\nangle: " + thi + " rad/s");
 
