@@ -24,7 +24,7 @@ class DopplerShift {
 	//enter freq
 	Scanner scan = new Scanner(System.in);
 
-	System.out.print("\nGPS L1 signal = 1575.42MHz\nISS = xxxMHz\n\nPlease enter frequency (MHz): ");//choose freq
+	System.out.print("\nGPS L1 signal = 1575.42MHz\nISS = 145.8MHz\n\nPlease enter frequency (MHz): ");//choose freq
 		rest_freq = scan.nextDouble();
 
 
